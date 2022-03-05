@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/station_C.png-1474e333d11b7e33b4bd0094ca98e825.res"
+group_file="res://simpleSpace_tilesheet.png"
+valid=true
+[deps]
+
+
+source_file="res://Art/station_C.png"
+dest_files=[ "res://.import/station_C.png-1474e333d11b7e33b4bd0094ca98e825.res" ]
+
+[params]
+
+atlas_file="res://simpleSpace_tilesheet.png"
+import_mode=0
+crop_to_region=false

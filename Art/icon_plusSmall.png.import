@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/icon_plusSmall.png-854b971afe73d95c87a5d7993a513b70.res"
+group_file="res://simpleSpace_tilesheet.png"
+valid=true
+[deps]
+
+
+source_file="res://Art/icon_plusSmall.png"
+dest_files=[ "res://.import/icon_plusSmall.png-854b971afe73d95c87a5d7993a513b70.res" ]
+
+[params]
+
+atlas_file="res://simpleSpace_tilesheet.png"
+import_mode=0
+crop_to_region=false

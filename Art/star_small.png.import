@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/star_small.png-3da58c2cc8c416112bbc2a0162d81ce1.res"
+group_file="res://simpleSpace_tilesheet.png"
+valid=true
+[deps]
+
+
+source_file="res://Art/star_small.png"
+dest_files=[ "res://.import/star_small.png-3da58c2cc8c416112bbc2a0162d81ce1.res" ]
+
+[params]
+
+atlas_file="res://simpleSpace_tilesheet.png"
+import_mode=0
+crop_to_region=false

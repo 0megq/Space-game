@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/effect_yellow.png-5aa6a7671c9b88566a7cad63648b59c5.res"
+group_file="res://simpleSpace_tilesheet.png"
+valid=true
+[deps]
+
+
+source_file="res://Art/effect_yellow.png"
+dest_files=[ "res://.import/effect_yellow.png-5aa6a7671c9b88566a7cad63648b59c5.res" ]
+
+[params]
+
+atlas_file="res://simpleSpace_tilesheet.png"
+import_mode=0
+crop_to_region=false

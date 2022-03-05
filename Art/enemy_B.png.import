@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/enemy_B.png-40a0e1d9769ce8ff3d5b4ef5a1fae34d.res"
+group_file="res://simpleSpace_tilesheet.png"
+valid=true
+[deps]
+
+
+source_file="res://Art/enemy_B.png"
+dest_files=[ "res://.import/enemy_B.png-40a0e1d9769ce8ff3d5b4ef5a1fae34d.res" ]
+
+[params]
+
+atlas_file="res://simpleSpace_tilesheet.png"
+import_mode=0
+crop_to_region=false

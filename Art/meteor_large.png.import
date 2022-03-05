@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/meteor_large.png-75d876c8fec66453054677ce53a6551e.res"
+group_file="res://simpleSpace_tilesheet.png"
+valid=true
+[deps]
+
+
+source_file="res://Art/meteor_large.png"
+dest_files=[ "res://.import/meteor_large.png-75d876c8fec66453054677ce53a6551e.res" ]
+
+[params]
+
+atlas_file="res://simpleSpace_tilesheet.png"
+import_mode=0
+crop_to_region=false

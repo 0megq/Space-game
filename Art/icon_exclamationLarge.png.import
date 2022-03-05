@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/icon_exclamationLarge.png-fa2b0b43f7aecde5a8d5a7de783270a7.res"
+group_file="res://simpleSpace_tilesheet.png"
+valid=true
+[deps]
+
+
+source_file="res://Art/icon_exclamationLarge.png"
+dest_files=[ "res://.import/icon_exclamationLarge.png-fa2b0b43f7aecde5a8d5a7de783270a7.res" ]
+
+[params]
+
+atlas_file="res://simpleSpace_tilesheet.png"
+import_mode=0
+crop_to_region=false

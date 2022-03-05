@@ -1,0 +1,18 @@
+[remap]
+
+importer="texture_atlas"
+type="Texture"
+path="res://.import/ship_E.png-29b7dfa25a3f65a7291c3e9fc64cf9b1.res"
+group_file="res://simpleSpace_tilesheet.png"
+valid=true
+[deps]
+
+
+source_file="res://Art/ship_E.png"
+dest_files=[ "res://.import/ship_E.png-29b7dfa25a3f65a7291c3e9fc64cf9b1.res" ]
+
+[params]
+
+atlas_file="res://simpleSpace_tilesheet.png"
+import_mode=0
+crop_to_region=false
