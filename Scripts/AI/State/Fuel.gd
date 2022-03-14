@@ -10,7 +10,7 @@ onready var idle_state: BaseState = get_node(idle_node)
 #	print("fuel")
 
 func physics_process(delta: float) -> BaseState:
-	var direction = get_move_input()
+	var direction = host.target
 	
 	if direction == Vector2.ZERO:
 		return idle_state
@@ -20,7 +20,3 @@ func physics_process(delta: float) -> BaseState:
 	host.move_and_slide(host.velocity)
 	return null
 
-func get_move_input() -> Vector2:
-	var direction = Vector2.ZERO
-	#code
-	return direction

@@ -36,9 +36,15 @@ script = ExtResource( 7 )
 
 [node name="StateManager" type="Node" parent="."]
 script = ExtResource( 6 )
+starting_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateManager"]
 script = ExtResource( 5 )
+deacc = 0.2
+fuel_node = NodePath("../Fuel")
 
 [node name="Fuel" type="Node" parent="StateManager"]
 script = ExtResource( 4 )
+max_speed = 300.0
+acc = 0.2
+idle_node = NodePath("../Idle")

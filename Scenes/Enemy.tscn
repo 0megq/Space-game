@@ -1,123 +1,25 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Art/ship_L.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/AI/Enemy.gd" type="Script" id=2]
 [ext_resource path="res://Scripts/InitialAngle.gd" type="Script" id=3]
+[ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scripts/AI/State/Idle.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/AI/State/Fuel.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/AI/State/StateManager.gd" type="Script" id=7]
 
-[sub_resource type="GDScript" id=1]
-script/source = "extends Node
-
-export (NodePath) var starting_state
-
-var current_state: BaseState
-
-func change_state(new_state: BaseState) -> void:
-	if current_state:
-		current_state.exit()
-
-	current_state = new_state
-	current_state.enter()
-
-# Initialize the state machine by giving each state a reference to the objects
-# owned by the parent that they should be able to take control of
-# and set a default state
-func init(host: Player) -> void:
-	for child in get_children():
-		child.host = host
-
-	# Initialize with a default state of idle
-	change_state(get_node(starting_state))
-	
-# Pass through functions for the Player to call,
-# handling state changes as needed
-func physics_process(delta: float) -> void:
-	var new_state = current_state.physics_process(delta)
-	if new_state:
-		change_state(new_state)
-
-func input(event: InputEvent) -> void:
-	var new_state = current_state.input(event)
-	if new_state:
-		change_state(new_state)
-
-func process(delta: float) -> void:
-	var new_state = current_state.process(delta)
-	if new_state:
-		change_state(new_state)
-"
-
-[sub_resource type="GDScript" id=2]
-script/source = "extends BaseState
-
-export (float) var deacc
-export (NodePath) var fuel_node
-
-onready var fuel_state: BaseState = get_node(fuel_node)
-
-#func enter() -> void:
-#	print(\"idle\")
-
-func input(event: InputEvent) -> BaseState:
-	var direction = Vector2.ZERO
-	if Input.is_action_pressed(\"move_left\"):
-		direction.x += -1
-	if Input.is_action_pressed(\"move_right\"):
-		direction.x += 1
-	if Input.is_action_pressed(\"move_up\"):
-		direction.y += -1
-	if Input.is_action_pressed(\"move_down\"):
-		direction.y += 1
-	
-	if direction != Vector2.ZERO:
-		return fuel_state
-	
-	return null
-
-func physics_process(delta: float) -> BaseState:
-	host.velocity = lerp(host.velocity, Vector2.ZERO, deacc)
-	host.move_and_slide(host.velocity)
-	return null
-	
-"
-
-[sub_resource type="GDScript" id=3]
-script/source = "extends BaseState
-
-export (float) var max_speed
-export (float) var acc
-export (NodePath) var idle_node
-
-onready var idle_state: BaseState = get_node(idle_node)
-
-#func enter() -> void:
-#	print(\"fuel\")
-
-func physics_process(delta: float) -> BaseState:
-	var direction = get_move_input()
-	
-	if direction == Vector2.ZERO:
-		return idle_state
-
-	host.velocity = lerp(host.velocity, max_speed * direction.normalized(), acc)
-
-	host.move_and_slide(host.velocity)
-	return null
-
-func get_move_input() -> Vector2:
-	var direction = Vector2.ZERO
-	if Input.is_action_pressed(\"move_left\"):
-		direction.x += -1
-	if Input.is_action_pressed(\"move_right\"):
-		direction.x += 1
-	if Input.is_action_pressed(\"move_up\"):
-		direction.y += -1
-	if Input.is_action_pressed(\"move_down\"):
-		direction.y += 1
-	return direction
-"
+[sub_resource type="CircleShape2D" id=1]
+radius = 131.061
 
 [node name="Enemy" type="KinematicBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource( 2 )
+state_manager_path = NodePath("StateManager")
+fire_rate = 1.0
+bullet_scene = ExtResource( 4 )
+max_ammo = 5
+fire_point_path = NodePath("FirePoint")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 polygon = PoolVector2Array( 12, 0, 0, -26, -12, 0, -31, 23, 0, 26, 31, 23 )
@@ -132,16 +34,22 @@ position = Vector2( 0, -24 )
 script = ExtResource( 3 )
 
 [node name="StateManager" type="Node" parent="."]
-script = SubResource( 1 )
+script = ExtResource( 7 )
 starting_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateManager"]
-script = SubResource( 2 )
-deacc = 0.02
+script = ExtResource( 5 )
 fuel_node = NodePath("../Fuel")
 
 [node name="Fuel" type="Node" parent="StateManager"]
-script = SubResource( 3 )
-max_speed = 250.0
-acc = 0.06
+script = ExtResource( 6 )
 idle_node = NodePath("../Idle")
+
+[node name="Detection" type="Area2D" parent="."]
+script = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource( 1 )
+
+[connection signal="body_entered" from="Detection" to="." method="_on_Detection_body_entered"]
+[connection signal="body_exited" from="Detection" to="." method="_on_Detection_body_exited"]
