@@ -3,10 +3,10 @@
 [ext_resource path="res://Scripts/Player/Player.gd" type="Script" id=1]
 [ext_resource path="res://Art/effect_yellow.png" type="Texture" id=2]
 [ext_resource path="res://Art/ship_F.png" type="Texture" id=3]
-[ext_resource path="res://Scripts/State/StateManager.gd" type="Script" id=4]
-[ext_resource path="res://Scripts/State/Fuel.gd" type="Script" id=5]
-[ext_resource path="res://Scripts/State/Idle.gd" type="Script" id=6]
-[ext_resource path="res://Scripts/Player/InitialAngle.gd" type="Script" id=7]
+[ext_resource path="res://Scripts/Player/State/Fuel.gd" type="Script" id=4]
+[ext_resource path="res://Scripts/Player/State/Idle.gd" type="Script" id=5]
+[ext_resource path="res://Scripts/Player/State/StateManager.gd" type="Script" id=6]
+[ext_resource path="res://Scripts/InitialAngle.gd" type="Script" id=7]
 [ext_resource path="res://Scenes/Bullet.tscn" type="PackedScene" id=8]
 
 [node name="Player" type="KinematicBody2D"]
@@ -35,16 +35,10 @@ texture = ExtResource( 3 )
 script = ExtResource( 7 )
 
 [node name="StateManager" type="Node" parent="."]
-script = ExtResource( 4 )
-starting_state = NodePath("Idle")
+script = ExtResource( 6 )
 
 [node name="Idle" type="Node" parent="StateManager"]
-script = ExtResource( 6 )
-deacc = 0.02
-fuel_node = NodePath("../Fuel")
+script = ExtResource( 5 )
 
 [node name="Fuel" type="Node" parent="StateManager"]
-script = ExtResource( 5 )
-max_speed = 250.0
-acc = 0.06
-idle_node = NodePath("../Idle")
+script = ExtResource( 4 )

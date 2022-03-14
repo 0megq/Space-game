@@ -1,7 +1,7 @@
 class_name BaseState
 extends Node
 
-var host: Player
+var host: KinematicBody2D
 
 func enter() -> void:
 	pass
