@@ -39,10 +39,13 @@ starting_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateManager"]
 script = ExtResource( 5 )
+deacc = 0.2
 fuel_node = NodePath("../Fuel")
 
 [node name="Fuel" type="Node" parent="StateManager"]
 script = ExtResource( 6 )
+max_speed = 250.0
+acc = 0.2
 idle_node = NodePath("../Idle")
 
 [node name="Detection" type="Area2D" parent="."]

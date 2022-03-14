@@ -10,10 +10,10 @@ onready var idle_state: BaseState = get_node(idle_node)
 #	print("fuel")
 
 func physics_process(delta: float) -> BaseState:
-	var direction = host.target
-	
-	if direction == Vector2.ZERO:
+	if host.target == Vector2.ZERO:
 		return idle_state
+	
+	var direction = (host.target - host.position).normalized()
 
 	host.velocity = lerp(host.velocity, max_speed * direction.normalized(), acc)
 

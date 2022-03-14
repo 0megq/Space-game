@@ -28,7 +28,6 @@ var detected: bool = false
 
 func _ready() -> void:
 	state_manager.init(self)
-	print(player.name)
 
 func _physics_process(delta: float) -> void:
 	state_manager.physics_process(delta)
