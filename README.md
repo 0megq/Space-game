@@ -1,2 +1,2 @@
 # Space-game
- game im working on in godot
+ Space game I'm working on. Most recent Godot project.
